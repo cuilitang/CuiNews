@@ -8,7 +8,6 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 
 import cui.litang.cuinews.MainActivity;
 import cui.litang.cuinews.R;
-import cui.litang.cuinews.base.BaseFragment;
 import cui.litang.cuinews.domain.NewsData;
 import cui.litang.cuinews.domain.NewsData.NewsMenuData;
 import cui.litang.cuinews.home.NewsCenterPager;

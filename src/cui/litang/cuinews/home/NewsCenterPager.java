@@ -16,7 +16,6 @@ import com.lidroid.xutils.http.callback.RequestCallBack;
 import com.lidroid.xutils.http.client.HttpRequest.HttpMethod;
 
 import cui.litang.cuinews.MainActivity;
-import cui.litang.cuinews.base.BasePager;
 import cui.litang.cuinews.domain.NewsData;
 import cui.litang.cuinews.fragment.LeftMenuFragment;
 import cui.litang.cuinews.global.GlobalConstants;
