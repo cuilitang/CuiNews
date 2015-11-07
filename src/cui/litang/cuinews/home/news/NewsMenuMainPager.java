@@ -1,4 +1,4 @@
-package cui.litang.cuinews.home;
+package cui.litang.cuinews.home.news;
 
 import java.util.ArrayList;
 
@@ -7,7 +7,6 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import cui.litang.cuinews.R;
 import cui.litang.cuinews.domain.NewsData.NewsTabData;
-import cui.litang.cuinews.view.BaseNewsMenuPager;
 
 public class NewsMenuMainPager extends BaseNewsMenuPager {
 	

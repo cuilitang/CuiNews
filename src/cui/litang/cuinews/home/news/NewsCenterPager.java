@@ -1,4 +1,4 @@
-package cui.litang.cuinews.home;
+package cui.litang.cuinews.home.news;
 
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ import cui.litang.cuinews.MainActivity;
 import cui.litang.cuinews.domain.NewsData;
 import cui.litang.cuinews.fragment.LeftMenuFragment;
 import cui.litang.cuinews.global.GlobalConstants;
-import cui.litang.cuinews.view.BaseNewsMenuPager;
+import cui.litang.cuinews.home.BasePager;
 
 public class NewsCenterPager extends BasePager {
 

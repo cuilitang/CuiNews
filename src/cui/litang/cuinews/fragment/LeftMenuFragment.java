@@ -10,7 +10,7 @@ import cui.litang.cuinews.MainActivity;
 import cui.litang.cuinews.R;
 import cui.litang.cuinews.domain.NewsData;
 import cui.litang.cuinews.domain.NewsData.NewsMenuData;
-import cui.litang.cuinews.home.NewsCenterPager;
+import cui.litang.cuinews.home.news.NewsCenterPager;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
