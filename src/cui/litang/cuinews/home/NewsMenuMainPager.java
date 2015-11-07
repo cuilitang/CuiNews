@@ -28,7 +28,7 @@ public class NewsMenuMainPager extends BaseNewsMenuPager {
 	@Override
 	public View initViews() {
 		
-		View view = View.inflate(mActivity, R.layout.news_menu_detail, null);
+		View view = View.inflate(mActivity, R.layout.news_menu_pager, null);
 		mViewPager = (ViewPager)view.findViewById(R.id.vp_menu_detail);
 		return view;
 	}
