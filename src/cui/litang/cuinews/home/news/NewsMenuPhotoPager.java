@@ -1,7 +1,10 @@
 package cui.litang.cuinews.home.news;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.TextView;
 
 public class NewsMenuPhotoPager extends BaseNewsMenuPager {
 
@@ -12,8 +15,13 @@ public class NewsMenuPhotoPager extends BaseNewsMenuPager {
 
 	@Override
 	public View initViews() {
-		// TODO Auto-generated method stub
-		return null;
+		TextView text = new TextView(mActivity);
+		text.setText("菜单详情页-新闻-图片");
+		text.setTextColor(Color.RED);
+		text.setTextSize(25);
+		text.setGravity(Gravity.CENTER);
+
+		return text;
 	}
 
 }

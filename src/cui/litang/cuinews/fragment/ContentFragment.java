@@ -16,9 +16,9 @@ import cui.litang.cuinews.R;
 import cui.litang.cuinews.home.BasePager;
 import cui.litang.cuinews.home.GovAffairPager;
 import cui.litang.cuinews.home.HomePager;
+import cui.litang.cuinews.home.NewsCenterPager;
 import cui.litang.cuinews.home.SettingPager;
 import cui.litang.cuinews.home.SmartServicePager;
-import cui.litang.cuinews.home.news.NewsCenterPager;
 
 public class ContentFragment extends BaseFragment {
 	
