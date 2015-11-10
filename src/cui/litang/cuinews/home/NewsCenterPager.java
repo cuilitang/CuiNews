@@ -43,7 +43,7 @@ public class NewsCenterPager extends BasePager {
 		setSlidingMenuEnable(false);
 		
 		TextView textView = new TextView(mActivity);
-		textView.setText("新闻中心页面内容");
+		textView.setText("新闻中心临时页面内容");
 		textView.setTextColor(Color.RED);
 		textView.setTextSize(25);
 		textView.setGravity(Gravity.CENTER);
