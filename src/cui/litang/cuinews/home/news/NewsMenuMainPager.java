@@ -16,20 +16,19 @@ import android.view.ViewGroup;
 import cui.litang.cuinews.MainActivity;
 import cui.litang.cuinews.R;
 import cui.litang.cuinews.domain.NewsData.NewsTabData;
-import cui.litang.cuinews.home.news.newstab.BaseNewsMenuPager;
 import cui.litang.cuinews.home.news.newstab.NewsTabPager;
 
-public class NewsMenuMainPage extends BaseNewsMenuPager implements OnPageChangeListener{
+public class NewsMenuMainPager extends BaseNewsMenuPager implements OnPageChangeListener{
 	private ArrayList<NewsTabData> mNewsTabData;// 页签网络数据
 	private ArrayList<NewsTabPager> mPagerList; //Viewpager 页面
 	private ViewPager mViewPager;  //页签
 	private TabPageIndicator mIndicator;
 
-	public NewsMenuMainPage(Activity activity) {
+	public NewsMenuMainPager(Activity activity) {
 		super(activity);
 	}
 
-	public NewsMenuMainPage(Activity mActivity, ArrayList<NewsTabData> children) {
+	public NewsMenuMainPager(Activity mActivity, ArrayList<NewsTabData> children) {
 		
 		super(mActivity);
 		mNewsTabData = children;

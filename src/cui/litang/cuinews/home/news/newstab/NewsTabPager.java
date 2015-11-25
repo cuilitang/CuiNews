@@ -6,6 +6,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 import cui.litang.cuinews.domain.NewsData.NewsTabData;
+import cui.litang.cuinews.home.news.BaseNewsMenuPager;
 
 public class NewsTabPager extends BaseNewsMenuPager {
 

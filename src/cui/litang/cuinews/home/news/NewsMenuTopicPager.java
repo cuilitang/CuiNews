@@ -1,15 +1,14 @@
 package cui.litang.cuinews.home.news;
 
-import cui.litang.cuinews.home.news.newstab.BaseNewsMenuPager;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
-public class NewsMenuTopicPage extends BaseNewsMenuPager {
+public class NewsMenuTopicPager extends BaseNewsMenuPager {
 
-	public NewsMenuTopicPage(Activity activity) {
+	public NewsMenuTopicPager(Activity activity) {
 		super(activity);
 		
 	}
