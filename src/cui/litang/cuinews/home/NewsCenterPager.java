@@ -19,11 +19,11 @@ import cui.litang.cuinews.MainActivity;
 import cui.litang.cuinews.domain.NewsData;
 import cui.litang.cuinews.fragment.LeftMenuFragment;
 import cui.litang.cuinews.global.GlobalConstants;
-import cui.litang.cuinews.home.news.BaseNewsMenuPager;
-import cui.litang.cuinews.home.news.NewsMenuInteractPager;
-import cui.litang.cuinews.home.news.NewsMenuMainPager;
-import cui.litang.cuinews.home.news.NewsMenuPhotoPager;
-import cui.litang.cuinews.home.news.NewsMenuTopicPager;
+import cui.litang.cuinews.home.news.NewsMenuInteractPage;
+import cui.litang.cuinews.home.news.NewsMenuMainPage;
+import cui.litang.cuinews.home.news.NewsMenuPhotoPage;
+import cui.litang.cuinews.home.news.NewsMenuTopicPage;
+import cui.litang.cuinews.home.news.newstab.BaseNewsMenuPager;
 
 public class NewsCenterPager extends BasePager {
 
@@ -95,10 +95,10 @@ public class NewsCenterPager extends BasePager {
 		
 		// 准备4个菜单详情页
 		mPagers = new ArrayList<BaseNewsMenuPager>();
-		mPagers.add(new NewsMenuMainPager(mActivity,mNewsData.data.get(0).children));
-		mPagers.add(new NewsMenuTopicPager(mActivity));
-		mPagers.add(new NewsMenuPhotoPager(mActivity));
-		mPagers.add(new NewsMenuInteractPager(mActivity));
+		mPagers.add(new NewsMenuMainPage(mActivity,mNewsData.data.get(0).children));
+		mPagers.add(new NewsMenuTopicPage(mActivity));
+		mPagers.add(new NewsMenuPhotoPage(mActivity));
+		mPagers.add(new NewsMenuInteractPage(mActivity));
 		
 		setCurrentNewsMenupager(0);//设置新闻为当前默认页
 		

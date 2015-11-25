@@ -1,4 +1,4 @@
-package cui.litang.cuinews.home.news;
+package cui.litang.cuinews.home.news.newstab;
 
 import android.app.Activity;
 import android.view.View;
