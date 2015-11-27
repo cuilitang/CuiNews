@@ -15,11 +15,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import cui.litang.cuinews.MainActivity;
 import cui.litang.cuinews.R;
-import cui.litang.cuinews.domain.NewsData.NewsTabData;
+import cui.litang.cuinews.domain.NewsData.NewsChildData;
 import cui.litang.cuinews.home.news.newstab.NewsTabPager;
 
 public class NewsMenuMainPager extends BaseNewsMenuPager implements OnPageChangeListener{
-	private ArrayList<NewsTabData> mNewsTabData;// 页签网络数据
+	private ArrayList<NewsChildData> mNewsChildData;// 页签网络数据
 	private ArrayList<NewsTabPager> mPagerList; //Viewpager 页面
 	private ViewPager mViewPager;  //页签
 	private TabPageIndicator mIndicator;
@@ -28,10 +28,10 @@ public class NewsMenuMainPager extends BaseNewsMenuPager implements OnPageChange
 		super(activity);
 	}
 
-	public NewsMenuMainPager(Activity mActivity, ArrayList<NewsTabData> children) {
+	public NewsMenuMainPager(Activity mActivity, ArrayList<NewsChildData> children) {
 		
 		super(mActivity);
-		mNewsTabData = children;
+		mNewsChildData = children;
 	}
 
 	@Override
@@ -52,9 +52,9 @@ public class NewsMenuMainPager extends BaseNewsMenuPager implements OnPageChange
 	public void initData() {
 		
 		mPagerList = new ArrayList<NewsTabPager>();
-		for (int i = 0; i < mNewsTabData.size(); i++) {
+		for (int i = 0; i < mNewsChildData.size(); i++) {
 			
-			NewsTabPager newsTabPager = new NewsTabPager(mActivity, mNewsTabData.get(i));
+			NewsTabPager newsTabPager = new NewsTabPager(mActivity, mNewsChildData.get(i));
 			mPagerList.add(newsTabPager);
 		}
 		
@@ -76,7 +76,7 @@ public class NewsMenuMainPager extends BaseNewsMenuPager implements OnPageChange
 		@Override
 		public CharSequence getPageTitle(int position) {
 			
-			return mNewsTabData.get(position).title;
+			return mNewsChildData.get(position).title;
 		}
 
 		@Override

@@ -14,7 +14,7 @@ public class NewsData {
 		public int type;
 		public String url;
 
-		public ArrayList<NewsTabData> children;
+		public ArrayList<NewsChildData> children;
 
 		@Override
 		public String toString() {
@@ -24,7 +24,7 @@ public class NewsData {
 	}
 
 	// 新闻页面下11个子页签的数据对象
-	public class NewsTabData {
+	public class NewsChildData {
 		public String id;
 		public String title;
 		public int type;
