@@ -31,7 +31,7 @@ import cui.litang.cuinews.domain.TabData.TopNewsData;
 import cui.litang.cuinews.global.GlobalConstants;
 import cui.litang.cuinews.home.news.BaseNewsMenuPager;
 
-public class NewsTabPager extends BaseNewsMenuPager {
+public class NewsTabPager extends BaseNewsMenuPager{
 
 	NewsChildData mChildData;
 	private String mUrl;
@@ -115,8 +115,10 @@ public class NewsTabPager extends BaseNewsMenuPager {
 			mViewPager.setAdapter(new TopNewsAdapter());
 			
 			tv_top_news_title.setText(mTopNewsList.get(0).title);
-
-			mViewPager.setOnPageChangeListener(new OnPageChangeListener(){
+			mCirclePageIndicator.setViewPager(mViewPager);
+			
+			 //如果我們要對ViewPager設置監聽，用indicator設置就行了  
+			mCirclePageIndicator.setOnPageChangeListener(new OnPageChangeListener(){
 
 				@Override
 				public void onPageScrolled(int position, float positionOffset,
@@ -137,11 +139,8 @@ public class NewsTabPager extends BaseNewsMenuPager {
 				}
 				
 			});
-			
-			mCirclePageIndicator.setViewPager(mViewPager);
-			mCirclePageIndicator.setSnap(true);
 			mCirclePageIndicator.onPageSelected(0);
-			
+			mCirclePageIndicator.setSnap(true);
 		}
 		
 		
