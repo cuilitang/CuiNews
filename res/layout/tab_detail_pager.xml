@@ -3,11 +3,43 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical" >
-<cui.litang.cuinews.view.TopNewsViewPager
-    android:id="@+id/vp_news"
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    /> 
+    
+    <RelativeLayout 
+        android:layout_width="match_parent"
+	    android:layout_height="200dp"
+        >
+		<cui.litang.cuinews.view.TopNewsViewPager
+	    android:id="@+id/vp_news"
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    /> 
+	    <RelativeLayout
+	        android:layout_width = "wrap_content"
+	        android:layout_height = "wrap_content"
+	        android:layout_alignParentBottom = "true"
+	        android:background = "#a000"
+	         >
+			<TextView 
+			    android:id="@+id/tv_top_news_title"
+			    android:layout_width="wrap_content"
+		  		android:layout_height="wrap_content"
+		  		android:textSize = "16sp"
+			    />
+			
+			<com.viewpagerindicator.CirclePageIndicator
+			    android:id="@+id/cricle_indicator"
+			    android:padding="10dip"
+			    android:layout_width="fill_parent"
+			    android:layout_height="wrap_content"
+			    android:layout_alignParentRight="true"
+			    >
+			    
+			</com.viewpagerindicator.CirclePageIndicator>
+			
+		</RelativeLayout>
+    
+
+</RelativeLayout>
     
 <ListView android:id="@+id/lv_list"
     android:layout_width="match_parent"
