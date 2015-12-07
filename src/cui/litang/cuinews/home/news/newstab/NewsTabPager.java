@@ -19,8 +19,10 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 import cui.litang.cuinews.R;
@@ -47,6 +49,9 @@ public class NewsTabPager extends BaseNewsMenuPager{
 	
 	@ViewInject(R.id.cricle_indicator)
 	private CirclePageIndicator mCirclePageIndicator;
+	
+	@ViewInject(R.id.lv_list)
+	private ListView lv_list;
 
 	
 	
@@ -62,7 +67,14 @@ public class NewsTabPager extends BaseNewsMenuPager{
 	public View initViews() {
 		
 		View view = View.inflate(mActivity, R.layout.tab_detail_pager, null);
+		View headerView = View.inflate(mActivity, R.layout.list_header_topnews_item, null);
+		
+		
 		ViewUtils.inject(this, view);
+		ViewUtils.inject(this, headerView);
+		lv_list.addHeaderView(headerView);
+		
+		
 		return view;	
 	
 	}
@@ -113,7 +125,7 @@ public class NewsTabPager extends BaseNewsMenuPager{
 		if (mTopNewsList != null) {
 			
 			mViewPager.setAdapter(new TopNewsAdapter());
-			
+			lv_list.setAdapter(new NewsLvAdapter());
 			tv_top_news_title.setText(mTopNewsList.get(0).title);
 			mCirclePageIndicator.setViewPager(mViewPager);
 			
@@ -189,6 +201,61 @@ public class NewsTabPager extends BaseNewsMenuPager{
 		public void destroyItem(ViewGroup container, int position, Object object) {
 			container.removeView((View) object);
 		}
+	}
+	
+	class NewsLvAdapter extends BaseAdapter{
+		
+		private BitmapUtils bitmapUtils;
+		
+		public NewsLvAdapter(){
+			bitmapUtils = new BitmapUtils(mActivity);
+			bitmapUtils.configDefaultLoadingImage(R.drawable.pic_item_list_default);
+		}
+
+		@Override
+		public int getCount() {
+
+			return mTabLVNewsList.size();
+		}
+
+		@Override
+		public Object getItem(int position) {
+
+			return mTabLVNewsList.get(position);
+		}
+
+		@Override
+		public long getItemId(int position) {
+			return position;
+		}
+
+		@Override
+		public View getView(int position, View convertView, ViewGroup parent) {
+			ViewHolder vh;
+			if(convertView == null){
+				convertView = View.inflate(mActivity, R.layout.list_news_item, null);
+				vh = new ViewHolder();
+				vh.ivPic = (ImageView) convertView.findViewById(R.id.iv_pic);
+				vh.tvTitle = (TextView) convertView.findViewById(R.id.tv_title);
+				vh.tvDate = (TextView) convertView.findViewById(R.id.tv_date);
+				convertView.setTag(vh);
+			}else{
+				vh = (ViewHolder) convertView.getTag();
+			}
+			
+			TabNewsData item = (TabNewsData) getItem(position);
+			vh.tvDate.setText(item.pubdate);
+			vh.tvTitle.setText(item.title);
+			bitmapUtils.display(vh.ivPic, item.listimage);
+			return convertView;
+		}
+		
+	}
+	
+	static class ViewHolder {
+		public TextView tvTitle;
+		public TextView tvDate;
+		public ImageView ivPic;
 	}
 	
 	

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" 
+    android:padding="10dp"
+    >
+    <cui.litang.cuinews.view.TopNewsViewPager
+	    android:id="@+id/vp_news"
+	    android:layout_width="match_parent"
+	    android:layout_height="200dp"
+	    /> 
+    <RelativeLayout
+	        android:layout_width = "match_parent"
+	        android:layout_height = "wrap_content"
+	        android:layout_alignParentBottom = "true"
+	        android:background = "#a000"
+	         >
+			<TextView 
+			    android:id="@+id/tv_top_news_title"
+			    android:layout_width="wrap_content"
+		  		android:layout_height="wrap_content"
+		  		android:textSize = "16sp"
+			    />
+			
+			<com.viewpagerindicator.CirclePageIndicator
+			    android:id="@+id/cricle_indicator"
+			    android:padding="10dip"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content"
+			    android:layout_alignParentRight="true"
+			    app:fillColor = "#f00"
+			    app:pageColor="@android:color/darker_gray"
+			    app:radius= "3dp"
+			    app:strokeWidth="0dp"
+			    >
+			    
+			</com.viewpagerindicator.CirclePageIndicator>
+			
+		</RelativeLayout>
+    
+
+</RelativeLayout>
+
+   
+
