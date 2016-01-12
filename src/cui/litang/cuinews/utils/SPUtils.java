@@ -36,5 +36,27 @@ public class SPUtils {
 		SharedPreferences sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
 		sp.edit().putBoolean(key, value).commit();
 	}
+	
+	/**
+	 * 写入String值
+	 * @param context 上下文
+	 * @param key key
+	 * @param value value
+	 */
+	public static void setString(Context context, String key, String value) {
+		SharedPreferences sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+		sp.edit().putString(key, value).commit();
+	}
+	
+	/**
+	 * 取得String值
+	 * @param context 上下文
+	 * @param key key
+	 * @param value 默认value
+	 */
+	public static String getString(Context context, String key,String defaultValue) {
+		SharedPreferences sp = context.getSharedPreferences(SP_NAME, Context.MODE_PRIVATE);
+		return sp.getString(key, defaultValue);
+	}
 
 }

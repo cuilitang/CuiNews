@@ -31,11 +31,41 @@ public class TopNewsViewPager extends ViewPager {
 	@Override
 	public boolean dispatchTouchEvent(MotionEvent ev) {
 		
-			getParent().requestDisallowInterceptTouchEvent(true);// 不要拦截,
-																	// 这样是为了保证ACTION_MOVE调用
+		switch (ev.getAction()) {
+		case MotionEvent.ACTION_DOWN:
+			
+			getParent().requestDisallowInterceptTouchEvent(true);// 不要拦截,为了保证MOVE调用
+			startX = (int) ev.getRawX();
+			startY = (int) ev.getRawY();
+			break;
 		
+		case MotionEvent.ACTION_MOVE:
+			
+			int endX = (int) ev.getRawX();
+			int endY = (int) ev.getRawY();
+			
+			if(Math.abs(endX - startX)> Math.abs(endY-startY)){ //左右滑动
+				
+				if(endX>startX){//右滑
+					
+					if(getCurrentItem() == 0){
+						getParent().requestDisallowInterceptTouchEvent(false);//第一个页面需要拦截
+					}else{
+						if(getCurrentItem() == getAdapter().getCount() - 1){
+							getParent().requestDisallowInterceptTouchEvent(false);//最后一个页面需要拦截
+						}
+					}
+				}
+			} else{ //上下滑动
+				getParent().requestDisallowInterceptTouchEvent(false);
+			}
+			break;
 
+		default:
+			break;
+		}
+		
 		return super.dispatchTouchEvent(ev);
-	}
+	}	
 
 }

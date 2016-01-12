@@ -27,7 +27,9 @@
             </intent-filter>
         </activity>
         <activity android:name="cui.litang.cuinews.GuideActivity"></activity>
+        
         <activity android:name="cui.litang.cuinews.MainActivity" android:theme="@style/Theme.PageIndicatorDefaults"></activity>
+        <activity android:name="cui.litang.cuinews.NewsContentActivity"></activity>
     </application>
 
 </manifest>
