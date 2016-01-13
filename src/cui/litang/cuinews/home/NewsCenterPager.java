@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ import cui.litang.cuinews.home.news.NewsMenuInteractPager;
 import cui.litang.cuinews.home.news.NewsMenuMainPager;
 import cui.litang.cuinews.home.news.NewsMenuPhotoPager;
 import cui.litang.cuinews.home.news.NewsMenuTopicPager;
+import cui.litang.cuinews.utils.CacheUtils;
 
 public class NewsCenterPager extends BasePager {
 
@@ -49,6 +51,12 @@ public class NewsCenterPager extends BasePager {
 		textView.setGravity(Gravity.CENTER);
 		fl_content.addView(textView);
 		
+		String catcheContent = CacheUtils.getCatche(mActivity, GlobalConstants.CATEGORIES_URL);
+		if(!TextUtils.isEmpty(catcheContent)){
+			
+			parseData(catcheContent);
+		}
+		
 		getDataFromServer();
 	}
 
@@ -63,6 +71,9 @@ public class NewsCenterPager extends BasePager {
 
 				String result = responseInfo.result;
 				System.out.println("返回结果"+result);
+				
+				//得到最新数据之后先缓存起来
+				CacheUtils.setCatche(mActivity, GlobalConstants.CATEGORIES_URL, result);
 				
 				parseData(result);
 				

@@ -23,7 +23,10 @@ import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.text.TextUtils;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -40,6 +43,7 @@ import cui.litang.cuinews.domain.TabData.TabNewsData;
 import cui.litang.cuinews.domain.TabData.TopNewsData;
 import cui.litang.cuinews.global.GlobalConstants;
 import cui.litang.cuinews.home.news.BaseNewsMenuPager;
+import cui.litang.cuinews.utils.CacheUtils;
 import cui.litang.cuinews.utils.SPUtils;
 import cui.litang.cuinews.view.RefreshListView.OnRefreshListener;
 
@@ -52,7 +56,7 @@ public class NewsTabPager extends BaseNewsMenuPager{
 	private ArrayList<TopNewsData> mTopNewsList;// 头条新闻数据集合
 	
 	@ViewInject(R.id.vp_news)
-	private ViewPager mViewPager;
+	private ViewPager vp_news;
 	
 	private Handler mHandler;//自动轮播用到
 	
@@ -140,8 +144,6 @@ public class NewsTabPager extends BaseNewsMenuPager{
 			}
 		});
 		
-		
-		
 		return view;	
 	
 	}
@@ -161,6 +163,12 @@ public class NewsTabPager extends BaseNewsMenuPager{
 	@Override
 	public void initData() {
 		
+		String catcheContent = CacheUtils.getCatche(mActivity, mUrl);
+		if(!TextUtils.isEmpty(catcheContent)){
+			
+			parseData(catcheContent,false);
+		}
+		
 		getDataFromServer();
 
 	}
@@ -176,6 +184,9 @@ public class NewsTabPager extends BaseNewsMenuPager{
 				String result = responseInfo.result;
 				System.out.println("页签详情 返回结果:"+result);
 				
+				//得到数据之后先缓存起来
+				CacheUtils.setCatche(mActivity, mUrl, result);
+				
 				parseData(result,false);
 				
 				lv_list.onRefreshComplete(true); //隐藏头布局
@@ -184,7 +195,7 @@ public class NewsTabPager extends BaseNewsMenuPager{
 			
 			@Override
 			public void onFailure(HttpException error, String msg) {
-				Toast.makeText(mActivity, msg, Toast.LENGTH_SHORT).show();
+				Toast.makeText(mActivity, "连接服务器失败...", Toast.LENGTH_SHORT).show();
 				error.printStackTrace();
 				
 				lv_list.onRefreshComplete(false);  //隐藏头布局
@@ -248,10 +259,10 @@ public class NewsTabPager extends BaseNewsMenuPager{
 		
 			if (mTopNewsList != null) {
 				topNewsAdapter = new TopNewsAdapter();
-				mViewPager.setAdapter(topNewsAdapter);
+				vp_news.setAdapter(topNewsAdapter);
 				
 				tv_top_news_title.setText(mTopNewsList.get(0).title);
-				mCirclePageIndicator.setViewPager(mViewPager);
+				mCirclePageIndicator.setViewPager(vp_news);
 				
 				 //如果我們要對ViewPager設置監聽，用indicator設置就行了  
 				mCirclePageIndicator.setOnPageChangeListener(new OnPageChangeListener(){
@@ -283,7 +294,7 @@ public class NewsTabPager extends BaseNewsMenuPager{
 				if (mHandler == null) {
 					mHandler = new Handler() {
 						public void handleMessage(android.os.Message msg) {
-							int currentItem = mViewPager.getCurrentItem();
+							int currentItem = vp_news.getCurrentItem();
 
 							if (currentItem < mTopNewsList.size() - 1) {
 								currentItem++;
@@ -291,7 +302,7 @@ public class NewsTabPager extends BaseNewsMenuPager{
 								currentItem = 0;
 							}
 
-							mViewPager.setCurrentItem(currentItem);// 切换到下一个页面
+							vp_news.setCurrentItem(currentItem);// 切换到下一个页面
 
 							mHandler.sendEmptyMessageDelayed(0, 3000);// 继续延时3秒发消息,
 																		// 形成循环
@@ -346,10 +357,33 @@ public class NewsTabPager extends BaseNewsMenuPager{
 		public Object instantiateItem(ViewGroup container, int position) {
 			ImageView image = new ImageView(mActivity);
 			image.setScaleType(ScaleType.FIT_XY);// 基于控件大小填充图片
-
+			
 			TopNewsData topNewsData = mTopNewsList.get(position);
 			utils.display(image, topNewsData.topimage);// 传递imagView对象和图片地址
 			container.addView(image);
+			
+			image.setOnTouchListener(new OnTouchListener() {
+				
+				@Override
+				public boolean onTouch(View v, MotionEvent event) {
+					switch (event.getAction()) {
+					case MotionEvent.ACTION_DOWN:
+						
+						mHandler.removeCallbacksAndMessages(null);
+						break;
+					case MotionEvent.ACTION_CANCEL:
+						mHandler.sendEmptyMessageDelayed(0, 3000);
+						break;
+					case MotionEvent.ACTION_UP:
+						mHandler.sendEmptyMessageDelayed(0, 3000);
+						Toast.makeText(mActivity, "没有新闻内容", 0).show();
+						break;
+					default:
+						break;
+					}
+					return true;
+				}
+			});
 			
 			System.out.println("instantiateItem....." + position);
 			return image;
