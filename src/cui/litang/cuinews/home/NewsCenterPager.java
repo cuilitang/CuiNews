@@ -6,6 +6,8 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.Gravity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,11 +33,11 @@ public class NewsCenterPager extends BasePager {
 
 	private ArrayList<BaseNewsMenuPager> mPagers;//侧边栏的四个详情页
 	private NewsData mNewsData;
-
+	
 	public NewsCenterPager(Activity activity) {
 		super(activity);
 	}
-
+	
 	@Override
 	public void initData() {
 		
@@ -108,7 +110,7 @@ public class NewsCenterPager extends BasePager {
 		mPagers = new ArrayList<BaseNewsMenuPager>();
 		mPagers.add(new NewsMenuMainPager(mActivity,mNewsData.data.get(0).children));
 		mPagers.add(new NewsMenuTopicPager(mActivity));
-		mPagers.add(new NewsMenuPhotoPager(mActivity));
+		mPagers.add(new NewsMenuPhotoPager(mActivity,btn_photo));
 		mPagers.add(new NewsMenuInteractPager(mActivity));
 		
 		setCurrentNewsMenupager(0);//设置新闻为当前默认页
@@ -124,6 +126,12 @@ public class NewsCenterPager extends BasePager {
 		BaseNewsMenuPager pager = mPagers.get(position);
 		fl_content.removeAllViews();
 		fl_content.addView(pager.mRootView);
+		
+		if(pager instanceof NewsMenuPhotoPager){
+			btn_photo.setVisibility(View.VISIBLE);
+		}else{
+			btn_photo.setVisibility(View.INVISIBLE);
+		}
 		
 		//设置当前页的标题
 		String title = mNewsData.data.get(position).title;

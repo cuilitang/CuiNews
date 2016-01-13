@@ -2,6 +2,7 @@ package cui.litang.cuinews.home.news;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.ImageButton;
 
 /**
  * 侧边栏菜单详情页
@@ -17,9 +18,8 @@ public abstract class BaseNewsMenuPager {
 		
 		mActivity = activity;
 		mRootView = initViews();
-		
 	}
-
+	
 	public abstract View initViews();
 	public void initData(){};
 
