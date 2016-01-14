@@ -14,6 +14,7 @@ import cui.litang.cuinews.R;
 import cui.litang.cuinews.domain.Photos;
 import cui.litang.cuinews.domain.Photos.PhotoInfo;
 import cui.litang.cuinews.global.GlobalConstants;
+import cui.litang.cuinews.utils.CacheUtils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.provider.SyncStateContract.Constants;
@@ -74,6 +75,10 @@ public class NewsMenuPhotoPager extends BaseNewsMenuPager {
 	@Override
 	public void initData() {
 		
+		String catche = CacheUtils.getCatche(mActivity, GlobalConstants.PHOTOS_URL);
+		if(catche != null){
+			parseData(catche);
+		}
 		getDataFromServer();
 	}
 
@@ -89,6 +94,7 @@ public class NewsMenuPhotoPager extends BaseNewsMenuPager {
 			public void onSuccess(ResponseInfo<String> responseInfo) {
 
 				String result = (String) responseInfo.result;
+				CacheUtils.setCatche(mActivity, GlobalConstants.PHOTOS_URL, result);
 				parseData(result);
 				
 			}
