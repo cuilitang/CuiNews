@@ -15,6 +15,7 @@ import cui.litang.cuinews.domain.Photos;
 import cui.litang.cuinews.domain.Photos.PhotoInfo;
 import cui.litang.cuinews.global.GlobalConstants;
 import cui.litang.cuinews.utils.CacheUtils;
+import cui.litang.cuinews.utils.bitmap.MyBitmapUtils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.provider.SyncStateContract.Constants;
@@ -134,10 +135,14 @@ public class NewsMenuPhotoPager extends BaseNewsMenuPager {
 	 */
 	class PhotoAdapter extends BaseAdapter{
 		
-		private BitmapUtils utils;
+		//TODO 此处为实验性质，试验一下自己写的三级缓存效果，还不完善，实际中仍旧 使用BitmapUtils
+		//private BitmapUtils utils;
+		private MyBitmapUtils utils;
 		
 		public PhotoAdapter(){
-			utils = new BitmapUtils(mActivity);
+			//utils = new BitmapUtils(mActivity);
+			utils = new MyBitmapUtils();
+
 		}
 
 
