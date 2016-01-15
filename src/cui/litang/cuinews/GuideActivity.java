@@ -84,8 +84,8 @@ public class GuideActivity extends Activity {
 			View point = new View(this);
 			point.setBackgroundResource(R.drawable.shape_point_gray);
 			
-			LinearLayout.LayoutParams params = new LayoutParams(10, 10);  //new LayoutParams(width, height);
-			if(i>0) params.leftMargin = 10;
+			LinearLayout.LayoutParams params = new LayoutParams(DensityUtils.dp2px(this, 10), DensityUtils.dp2px(this, 10));  //new LayoutParams(width, height);
+			if(i>0) params.leftMargin = DensityUtils.dp2px(this, 10);
 			point.setLayoutParams(params);
 			
 			ll_point_group.addView(point);
